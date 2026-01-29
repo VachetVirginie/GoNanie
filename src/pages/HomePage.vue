@@ -137,10 +137,10 @@
                 <div class="flex items-center gap-3">
                   <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
                     <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 2c2.5 2.5 2.5 5.5 0 8" />
-                      <path d="M12 22c-2.5-2.5-2.5-5.5 0-8" />
-                      <path d="M2 12c2.5-2.5 5.5-2.5 8 0" />
-                      <path d="M22 12c-2.5 2.5-5.5 2.5-8 0" />
+                      <path d="M3 8c3-2 6-2 9 0" />
+                      <path d="M3 12c4-2 8-2 12 0" />
+                      <path d="M3 16c3-2 6-2 9 0" />
+                      <path d="M17 10c1.8 0 3 1.2 3 3s-1.2 3-3 3" />
                     </svg>
                   </div>
                   <div>
