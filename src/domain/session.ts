@@ -7,10 +7,12 @@ export type Exercise = {
   variantStanding: string
 }
 
-export type ProgramId = 'mix' | 'circulation_assis' | 'renfo_doux_assis' | 'relaxation_assis'
+export type ProgramId = 'mix' | 'circulation_assis' | 'renfo_doux_assis' | 'relaxation_assis' | 'respiration'
 
 export function getSessionByProgram(program: string | null | undefined): Exercise[] {
   switch (program) {
+    case 'respiration':
+      return SESSION_RESPIRATION
     case 'circulation_assis':
       return SESSION_CIRCULATION_ASSIS
     case 'renfo_doux_assis':
@@ -73,6 +75,33 @@ export const SESSION_RENFO_DOUX_ASSIS: Exercise[] = [
     durationSec: 60,
     instructions: 'Contraction légère, sans bloquer la respiration.',
     variantSeated: 'Rentrez légèrement le ventre comme pour rapprocher le nombril du dos.',
+    variantStanding: ""
+  },
+]
+
+export const SESSION_RESPIRATION: Exercise[] = [
+  {
+    id: 'settle',
+    title: 'S’installer',
+    durationSec: 40,
+    instructions: 'Inspire par le nez, expire par la bouche',
+    variantSeated: 'Assis bien droit, pieds au sol, épaules relâchées.',
+    variantStanding: ""
+  },
+  {
+    id: 'nose-breath',
+    title: 'Respiration nasale',
+    durationSec: 45,
+    instructions: 'Inspirez et expirez par le nez, doucement, sans forcer.',
+    variantSeated: 'Posez une main sur le ventre et sentez le mouvement.',
+    variantStanding: ""
+  },
+  {
+    id: 'slow-exhale',
+    title: 'Expiration longue',
+    durationSec: 40,
+    instructions: 'Allongez l’expiration. Gardez une respiration fluide et confortable.',
+    variantSeated: 'Inspirez 3–4 secondes, expirez 5–6 secondes, sans apnée.',
     variantStanding: ""
   },
 ]

@@ -10,7 +10,7 @@
           <div class="text-slate-700">Exercice {{ idx + 1 }} / {{ total }}</div>
         </div>
         <div class="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
-          {{ profile.mobility === 'assis' ? 'Mode assis' : 'Mode debout' }}
+          Mode assis
         </div>
       </div>
       <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-slate-200">
@@ -18,35 +18,80 @@
       </div>
     </div>
 
-    <div :class="cardClass">
-      <div class="space-y-3">
-        <div class="text-sm font-semibold text-slate-600">À faire maintenant</div>
-        <div class="text-2xl font-extrabold tracking-tight">{{ ex.title }}</div>
+    <div v-if="isBreathingProgram" :class="cardClass">
+      <div class="space-y-4">
+        <div class="text-center">
+          <div class="text-sm font-semibold text-slate-600">Respiration guidée</div>
+          <div class="mt-1 text-2xl font-extrabold tracking-tight">{{ breathingCue }}</div>
+        </div>
 
-        <div :class="'rounded-3xl border p-4 shadow-sm ' + theme.consigneCard">
-          <div class="flex items-center justify-between gap-3">
-            <div :class="'inline-flex items-center rounded-full px-3 py-1 text-sm font-extrabold ' + theme.consignePill">
-              Consigne
-            </div>
-          </div>
-          <div :class="'mt-3 rounded-2xl border bg-white p-4 ' + theme.consigneInner">
-            <div :class="'border-l-4 pl-4 text-2xl font-extrabold leading-8 tracking-tight text-slate-900 ' + theme.consigneLeft">
-              {{ variant }}
+        <div class="grid place-items-center">
+          <div
+            class="relative grid h-52 w-52 place-items-center rounded-full"
+            role="button"
+            tabindex="0"
+            @click="onBreathingBubblePress"
+            @keydown.enter.prevent="onBreathingBubblePress"
+            @keydown.space.prevent="onBreathingBubblePress"
+            :style="{
+              transform: `scale(${breathingScale})`,
+              transition: running ? 'none' : 'transform 180ms ease-out',
+              background:
+                'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.65), rgba(255,255,255,0.0) 55%), linear-gradient(135deg, rgba(14,165,233,0.65), rgba(34,211,238,0.65))',
+              boxShadow: '0 18px 45px rgba(14,165,233,0.20)',
+            }"
+          >
+            <div class="absolute inset-0 rounded-full ring-1 ring-white/35" />
+            <div class="text-center">
+              <div class="text-sm font-extrabold tracking-wide text-white/90">{{ breathingCue }}</div>
+              <div class="mt-1 text-4xl font-extrabold tabular-nums text-white">{{ mmss }}</div>
             </div>
           </div>
         </div>
 
         <div class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5">
           <div class="flex items-center justify-between gap-3">
-            <div class="text-sm font-semibold text-slate-600">Conseil</div>
+            <div class="text-sm font-semibold text-slate-600">Consigne</div>
             <div :class="'rounded-full px-3 py-1 text-sm font-semibold ' + theme.modePill">
-              {{ profile.mobility === 'assis' ? 'Assis' : 'Debout' }}
+              {{ profile.mobility === 'assis' ? 'Assis' : 'Assis' }}
             </div>
           </div>
           <div class="mt-2 text-lg font-semibold leading-7 text-slate-900">{{ ex.instructions }}</div>
         </div>
       </div>
     </div>
+
+    <template v-else>
+      <div :class="cardClass">
+        <div class="space-y-3">
+          <div class="text-sm font-semibold text-slate-600">À faire maintenant</div>
+          <div class="text-2xl font-extrabold tracking-tight">{{ ex.title }}</div>
+
+          <div :class="'rounded-3xl border p-4 shadow-sm ' + theme.consigneCard">
+            <div class="flex items-center justify-between gap-3">
+              <div :class="'inline-flex items-center rounded-full px-3 py-1 text-sm font-extrabold ' + theme.consignePill">
+                Consigne
+              </div>
+            </div>
+            <div :class="'mt-3 rounded-2xl border bg-white p-4 ' + theme.consigneInner">
+              <div :class="'border-l-4 pl-4 text-2xl font-extrabold leading-8 tracking-tight text-slate-900 ' + theme.consigneLeft">
+                {{ variant }}
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="text-sm font-semibold text-slate-600">Conseil</div>
+              <div :class="'rounded-full px-3 py-1 text-sm font-semibold ' + theme.modePill">
+                {{ profile.mobility === 'assis' ? 'Assis' : 'Assis' }}
+              </div>
+            </div>
+            <div class="mt-2 text-lg font-semibold leading-7 text-slate-900">{{ ex.instructions }}</div>
+          </div>
+        </div>
+      </div>
+    </template>
 
     <div :class="cardClass">
       <div class="space-y-3">
@@ -110,6 +155,29 @@
         </button>
       </div>
     </div>
+
+    <div
+      v-if="showBreathingDoneSheet"
+      class="fixed inset-0 z-50 flex bg-slate-950/50 backdrop-blur-sm"
+      @click.self="closeBreathingDoneSheet"
+    >
+      <div class="h-full w-full bg-white px-5 py-10 shadow-2xl">
+        <div class="mx-auto flex h-full w-full max-w-md flex-col justify-center space-y-4">
+          <div class="text-center">
+            <div class="text-3xl font-extrabold tracking-tight">Bravo exercice terminé !</div>
+            <div class="mt-2 text-slate-700">Vous pouvez revenir à l’accueil.</div>
+          </div>
+
+          <button :class="primaryButtonClass + ' w-full py-4'" type="button" @click="goHome">
+            Retour à l'accueil
+          </button>
+
+          <button :class="secondaryButtonClass + ' w-full py-4'" type="button" @click="closeBreathingDoneSheet">
+            Fermer
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -139,10 +207,14 @@ const programId = computed(() => {
 
 const exercises = computed(() => getSessionByProgram(programId.value))
 
+const isBreathingProgram = computed(() => programId.value === 'respiration')
+
 const total = computed(() => exercises.value.length)
 
 const programLabel = computed(() => {
   switch (programId.value) {
+    case 'respiration':
+      return 'Respiration'
     case 'circulation_assis':
       return 'Circulation (assis)'
     case 'renfo_doux_assis':
@@ -157,6 +229,21 @@ const programLabel = computed(() => {
 
 const theme = computed(() => {
   switch (programId.value) {
+    case 'respiration':
+      return {
+        heroTo: '',
+        chip: 'bg-sky-50 text-sky-900',
+        progress: 'from-sky-600 to-cyan-400',
+        blob: 'bg-cyan-400',
+        consigneCard: 'border-sky-200 bg-sky-50/40',
+        consignePill: 'bg-sky-600 text-white',
+        consigneInner: 'border-sky-100',
+        consigneLeft: 'border-sky-600',
+        modePill: 'bg-sky-50 text-sky-900',
+        timerCard: 'border-sky-200',
+        timerPill: 'bg-sky-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-sky-600 to-cyan-400 shadow-sky-600/20',
+      }
     case 'circulation_assis':
       return {
         heroTo: '',
@@ -247,6 +334,111 @@ const mmss = computed(() => {
   return `${m}:${s}`
 })
 
+const inhaleSec = computed(() => {
+  if (!isBreathingProgram.value) return 4
+  switch (ex.value?.id) {
+    case 'slow-exhale':
+      return 4
+    case 'nose-breath':
+      return 4
+    case 'settle':
+    default:
+      return 4
+  }
+})
+
+const exhaleSec = computed(() => {
+  if (!isBreathingProgram.value) return 4
+  switch (ex.value?.id) {
+    case 'slow-exhale':
+      return 6
+    case 'nose-breath':
+      return 4
+    case 'settle':
+    default:
+      return 4
+  }
+})
+
+const nowMs = ref<number>(typeof performance !== 'undefined' ? performance.now() : Date.now())
+const lastRemainingMarkMs = ref<number>(nowMs.value)
+let raf: number | null = null
+
+function tick() {
+  nowMs.value = typeof performance !== 'undefined' ? performance.now() : Date.now()
+  raf = window.requestAnimationFrame(tick)
+}
+
+function stopTick() {
+  if (raf !== null) {
+    window.cancelAnimationFrame(raf)
+    raf = null
+  }
+}
+
+watch(
+  [isBreathingProgram, running],
+  ([isBreathing, isRunning]) => {
+    stopTick()
+    if (isBreathing && isRunning) {
+      lastRemainingMarkMs.value = typeof performance !== 'undefined' ? performance.now() : Date.now()
+      tick()
+    }
+  },
+  { immediate: true },
+)
+
+watch(remaining, () => {
+  lastRemainingMarkMs.value = typeof performance !== 'undefined' ? performance.now() : Date.now()
+})
+
+const breathingElapsedSec = computed(() => {
+  const duration = ex.value?.durationSec ?? 0
+  const elapsedWhole = Math.max(0, duration - remaining.value)
+  if (!running.value) return Math.min(duration, elapsedWhole)
+  const delta = (nowMs.value - lastRemainingMarkMs.value) / 1000
+  return Math.min(duration, Math.max(0, elapsedWhole + delta))
+})
+
+const breathingPhase = computed(() => {
+  const cycle = inhaleSec.value + exhaleSec.value
+  if (cycle <= 0) return { cue: 'Respirez', progress: 0.5 }
+  const t = breathingElapsedSec.value % cycle
+  if (t < inhaleSec.value) {
+    return { cue: 'Inspire', progress: inhaleSec.value <= 0 ? 1 : t / inhaleSec.value }
+  }
+  const exT = t - inhaleSec.value
+  return { cue: 'Expire', progress: exhaleSec.value <= 0 ? 1 : exT / exhaleSec.value }
+})
+
+const breathingCue = computed(() => {
+  if (!isBreathingProgram.value) return ''
+  if (ex.value?.id === 'settle') return 'Respiration naturelle'
+  return breathingPhase.value.cue
+})
+
+function easeInOutSine(x: number) {
+  const t = Math.min(1, Math.max(0, x))
+  return -(Math.cos(Math.PI * t) - 1) / 2
+}
+
+const breathingScale = computed(() => {
+  const min = 0.86
+  const max = 1.06
+
+  if (!isBreathingProgram.value) return 1
+
+  const p = easeInOutSine(breathingPhase.value.progress)
+
+  if (breathingPhase.value.cue === 'Expire') {
+    return max - (max - min) * p
+  }
+
+  return min + (max - min) * p
+})
+
+const showBreathingDoneSheet = ref(false)
+
 let timer: number | null = null
 
 function clearTimer() {
@@ -289,8 +481,21 @@ watch(running, (isRunning: boolean) => {
   }, 1000)
 })
 
+watch(
+  () => remaining.value,
+  (v: number) => {
+    if (!isBreathingProgram.value) return
+    if (v > 0) return
+
+    if (isLast.value) {
+      showBreathingDoneSheet.value = true
+    }
+  },
+)
+
 onBeforeUnmount(() => {
   clearTimer()
+  stopTick()
 })
 
 function restart() {
@@ -304,11 +509,51 @@ function prev() {
 
 function next() {
   if (!isLast.value) idx.value = idx.value + 1
-  else router.push('/done')
+  else {
+    if (isBreathingProgram.value) {
+      showBreathingDoneSheet.value = true
+    } else {
+      router.push('/done')
+    }
+  }
 }
 
 function stopNow() {
   running.value = false
   router.push('/stop')
+}
+
+function toggleRunning() {
+  running.value = !running.value
+}
+
+function onBreathingBubblePress() {
+  if (!isBreathingProgram.value) {
+    toggleRunning()
+    return
+  }
+
+  if (remaining.value <= 0) {
+    if (isLast.value) {
+      showBreathingDoneSheet.value = true
+      return
+    }
+
+    next()
+    running.value = true
+    return
+  }
+
+  toggleRunning()
+}
+
+function goHome() {
+  showBreathingDoneSheet.value = false
+  running.value = false
+  router.push('/')
+}
+
+function closeBreathingDoneSheet() {
+  showBreathingDoneSheet.value = false
 }
 </script>
