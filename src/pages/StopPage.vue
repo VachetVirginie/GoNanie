@@ -5,11 +5,11 @@
         <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-800">
           Pause sécurité
         </div>
-        <h1 class="text-3xl font-extrabold tracking-tight">Vous avez arrêté la séance</h1>
+        <h1 class="text-3xl font-extrabold tracking-tight">Tu as arrêté la séance</h1>
         <div class="rounded-2xl border border-red-200 bg-red-50 p-3">
-          <div class="text-base font-semibold text-red-900">Si vous ne vous sentez pas bien</div>
+          <div class="text-base font-semibold text-red-900">Si tu ne te sens pas bien</div>
           <p class="mt-1 text-slate-700">
-            Douleur inhabituelle, vertiges, malaise, ou essoufflement important: reposez-vous et contactez un proche ou un professionnel de santé.
+            Douleur inhabituelle, vertiges, malaise, ou essoufflement important: repose-toi et contacte un proche ou un professionnel de santé.
           </p>
         </div>
       </div>

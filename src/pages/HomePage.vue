@@ -14,11 +14,11 @@
             </h1>
             <button
               type="button"
-              :class="secondaryButtonClass + ' grid h-10 w-10 place-items-center p-0'"
+              :class="secondaryButtonClass + ' inline-flex h-12 w-12 items-center justify-center p-0 leading-none'"
               aria-label="Profil"
               @click="router.push('/onboarding')"
             >
-              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" class="block h-9 w-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21a8 8 0 0 0-16 0" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
@@ -37,7 +37,7 @@
           <div>
             <div class="text-2xl font-extrabold tracking-tight">Démarrer</div>
             <div class="mt-1 text-lg font-semibold text-slate-700">
-              {{ profile ? 'Votre prochaine séance est prête.' : 'Créez votre profil en moins d’une minute.' }}
+              {{ profile ? 'Ta prochaine séance est prête.' : 'Crée ton profil en moins d’une minute.' }}
             </div>
           </div>
           <!-- <div class="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">

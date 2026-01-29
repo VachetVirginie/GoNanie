@@ -6,7 +6,7 @@
           Séance terminée
         </div>
         <h1 class="text-3xl font-extrabold tracking-tight">Bravo</h1>
-        <p class="text-slate-700">Vous venez de prendre soin de vous. Continuez doucement à votre rythme.</p>
+        <p class="text-slate-700">Tu viens de prendre soin de toi. Continue doucement à ton rythme.</p>
       </div>
     </div>
 

@@ -5,7 +5,7 @@
         <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-800">
           Étape 1/1
         </div>
-        <h1 class="text-3xl font-extrabold tracking-tight">Votre profil</h1>
+        <h1 class="text-3xl font-extrabold tracking-tight">Ton profil</h1>
         <p class="text-slate-700">Quelques infos pour adapter la séance. Modifiable à tout moment.</p>
       </div>
     </div>

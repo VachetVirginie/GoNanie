@@ -8,7 +8,7 @@
             <div class="flex items-center gap-2">
               <div class="h-9 w-9 rounded-2xl bg-gradient-to-br from-blue-600 to-sky-400 shadow-sm shadow-blue-600/25" />
               <div class="leading-tight">
-                <div class="text-lg font-extrabold tracking-tight">Go Nanie Go!</div>
+                <div class="text-lg font-extrabold tracking-tight">{{ headerTitle }}</div>
                 <div class="text-sm font-semibold text-slate-600">Mobilité & équilibre</div>
               </div>
             </div>
@@ -27,5 +27,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { loadProfile } from './domain/profile'
+
+const profile = computed(() => loadProfile())
+
+const headerTitle = computed(() => {
+  const p = profile.value
+  if (!p) return 'Go Nanie Go!'
+  return `Go ${p.firstName} Go!`
+})
 </script>

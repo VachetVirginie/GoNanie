@@ -165,7 +165,7 @@
         <div class="mx-auto flex h-full w-full max-w-md flex-col justify-center space-y-4">
           <div class="text-center">
             <div class="text-3xl font-extrabold tracking-tight">Bravo exercice terminé !</div>
-            <div class="mt-2 text-slate-700">Vous pouvez revenir à l’accueil.</div>
+            <div class="mt-2 text-slate-700">Tu peux revenir à l’accueil.</div>
           </div>
 
           <button :class="primaryButtonClass + ' w-full py-4'" type="button" @click="goHome">
