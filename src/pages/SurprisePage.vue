@@ -5,7 +5,7 @@
         <div class="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 text-sm font-semibold text-rose-800">
           Surprise
         </div>
-        <h1 class="text-3xl font-extrabold tracking-tight">Je t’aime !</h1>
+        <h1 class="text-3xl font-extrabold tracking-tight">Je t’aime mamie ❤️ !</h1>
       </div>
     </div>
 

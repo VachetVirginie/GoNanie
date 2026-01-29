@@ -211,6 +211,10 @@ const PROGRAM_IDS = [
   'equilibre_assis',
   'matin_douceur',
   'soir_detente',
+  'douleur_genoux_assis',
+  'douleur_poignets_assis',
+  'douleur_dos_assis',
+  'douleur_nuque_assis',
 ] as const
 
 function isProgramId(value: string): value is ProgramId {
@@ -231,6 +235,14 @@ const total = computed(() => exercises.value.length)
 
 const programLabel = computed(() => {
   switch (programId.value) {
+    case 'douleur_nuque_assis':
+      return 'Douleur nuque (assis)'
+    case 'douleur_dos_assis':
+      return 'Douleur dos (assis)'
+    case 'douleur_poignets_assis':
+      return 'Douleur poignets (assis)'
+    case 'douleur_genoux_assis':
+      return 'Douleur genoux (assis)'
     case 'mobilite_assis':
       return 'Mobilité (assis)'
     case 'equilibre_assis':
@@ -255,6 +267,66 @@ const programLabel = computed(() => {
 
 const theme = computed(() => {
   switch (programId.value) {
+    case 'douleur_nuque_assis':
+      return {
+        heroTo: '',
+        chip: 'bg-cyan-50 text-cyan-900',
+        progress: 'from-cyan-600 to-blue-600',
+        blob: 'bg-cyan-400',
+        consigneCard: 'border-cyan-200 bg-cyan-50/40',
+        consignePill: 'bg-cyan-600 text-white',
+        consigneInner: 'border-cyan-100',
+        consigneLeft: 'border-cyan-600',
+        modePill: 'bg-cyan-50 text-cyan-900',
+        timerCard: 'border-cyan-200',
+        timerPill: 'bg-cyan-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-cyan-600 to-blue-600 shadow-cyan-600/20',
+      }
+    case 'douleur_dos_assis':
+      return {
+        heroTo: '',
+        chip: 'bg-emerald-50 text-emerald-900',
+        progress: 'from-emerald-600 to-teal-600',
+        blob: 'bg-emerald-400',
+        consigneCard: 'border-emerald-200 bg-emerald-50/40',
+        consignePill: 'bg-emerald-600 text-white',
+        consigneInner: 'border-emerald-100',
+        consigneLeft: 'border-emerald-600',
+        modePill: 'bg-emerald-50 text-emerald-900',
+        timerCard: 'border-emerald-200',
+        timerPill: 'bg-emerald-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-emerald-600 to-teal-600 shadow-emerald-600/20',
+      }
+    case 'douleur_poignets_assis':
+      return {
+        heroTo: '',
+        chip: 'bg-fuchsia-50 text-fuchsia-900',
+        progress: 'from-fuchsia-600 to-rose-600',
+        blob: 'bg-fuchsia-400',
+        consigneCard: 'border-fuchsia-200 bg-fuchsia-50/40',
+        consignePill: 'bg-fuchsia-600 text-white',
+        consigneInner: 'border-fuchsia-100',
+        consigneLeft: 'border-fuchsia-600',
+        modePill: 'bg-fuchsia-50 text-fuchsia-900',
+        timerCard: 'border-fuchsia-200',
+        timerPill: 'bg-fuchsia-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-fuchsia-600 to-rose-600 shadow-fuchsia-600/20',
+      }
+    case 'douleur_genoux_assis':
+      return {
+        heroTo: '',
+        chip: 'bg-rose-50 text-rose-900',
+        progress: 'from-rose-600 to-red-600',
+        blob: 'bg-rose-400',
+        consigneCard: 'border-rose-200 bg-rose-50/40',
+        consignePill: 'bg-rose-600 text-white',
+        consigneInner: 'border-rose-100',
+        consigneLeft: 'border-rose-600',
+        modePill: 'bg-rose-50 text-rose-900',
+        timerCard: 'border-rose-200',
+        timerPill: 'bg-rose-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-rose-600 to-red-600 shadow-rose-600/20',
+      }
     case 'mobilite_assis':
       return {
         heroTo: '',
