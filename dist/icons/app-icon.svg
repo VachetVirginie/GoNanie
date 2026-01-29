@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Go Nanie Go!">
+  <defs>
+    <linearGradient id="g" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect x="64" y="64" width="384" height="384" rx="112" fill="url(#g)"/>
+  <path d="M164 262c0-51 41-92 92-92s92 41 92 92-41 92-92 92-92-41-92-92Z" fill="#fff" opacity="0.92"/>
+  <path d="M248 170v34m0 116v34m-78-78h34m116 0h34" fill="none" stroke="#0B1220" stroke-opacity="0.55" stroke-width="18" stroke-linecap="round"/>
+</svg>
