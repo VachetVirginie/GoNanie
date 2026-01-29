@@ -6,6 +6,7 @@ import OnboardingPage from './pages/OnboardingPage.vue'
 import SessionPage from './pages/SessionPage.vue'
 import StopPage from './pages/StopPage.vue'
 import DonePage from './pages/DonePage.vue'
+import SurprisePage from './pages/SurprisePage.vue'
 import './styles.css'
 
 const router = createRouter({
@@ -16,6 +17,7 @@ const router = createRouter({
     { path: '/session', component: SessionPage },
     { path: '/stop', component: StopPage },
     { path: '/done', component: DonePage },
+    { path: '/surprise', component: SurprisePage },
     { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
 })

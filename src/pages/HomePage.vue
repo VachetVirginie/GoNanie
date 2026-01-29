@@ -47,16 +47,90 @@
         </button>
 
         <div v-else class="space-y-3">
-          <div class="grid gap-3">
+          <div class="grid grid-cols-2 gap-3">
             <button
-              class="w-full rounded-2xl bg-gradient-to-r from-blue-600 to-sky-500 px-4 py-4 text-left text-xl font-extrabold text-white shadow-sm shadow-blue-600/20 transition active:translate-y-px"
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-yellow-500 to-amber-500 p-4 text-center text-white shadow-sm shadow-amber-600/20 transition active:translate-y-px"
+              type="button"
+              @click="router.push({ path: '/session', query: { program: 'matin_douceur' } })"
+            >
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3v3" />
+                      <path d="M4.5 10.5l2 2" />
+                      <path d="M19.5 10.5l-2 2" />
+                      <path d="M6 18h12" />
+                      <path d="M8 18a4 4 0 0 1 8 0" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-lg font-extrabold">Matin</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Douceur</div>
+                </div>
+              </div>
+            </button>
+            <button
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-slate-700 to-indigo-700 p-4 text-center text-white shadow-sm shadow-slate-700/20 transition active:translate-y-px"
+              type="button"
+              @click="router.push({ path: '/session', query: { program: 'soir_detente' } })"
+            >
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 12.5A7.5 7.5 0 0 1 11.5 3 6.5 6.5 0 1 0 21 12.5Z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-lg font-extrabold">Soir</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Détente</div>
+                </div>
+              </div>
+            </button>
+            <button
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-amber-500 to-orange-500 p-4 text-center text-white shadow-sm shadow-amber-600/20 transition active:translate-y-px"
+              type="button"
+              @click="router.push({ path: '/session', query: { program: 'relaxation_assis' } })"
+            >
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 21s-6-4.35-6-10a3.5 3.5 0 0 1 6-2 3.5 3.5 0 0 1 6 2c0 5.65-6 10-6 10Z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-lg font-extrabold">Relaxation</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
+                </div>
+              </div>
+            </button>
+            <button
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-sky-600 to-cyan-400 p-4 text-center text-white shadow-sm shadow-sky-600/20 transition active:translate-y-px"
+              type="button"
+              @click="router.push({ path: '/session', query: { program: 'respiration' } })"
+            >
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 8c3-2 6-2 9 0" />
+                      <path d="M3 12c4-2 8-2 12 0" />
+                      <path d="M3 16c3-2 6-2 9 0" />
+                      <path d="M17 10c1.8 0 3 1.2 3 3s-1.2 3-3 3" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-lg font-extrabold">Respiration</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Douce</div>
+                </div>
+              </div>
+            </button>
+            <button
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-blue-600 to-sky-500 p-4 text-center text-white shadow-sm shadow-blue-600/20 transition active:translate-y-px"
               type="button"
               @click="router.push({ path: '/session', query: { program: 'mix' } })"
             >
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M12 2v6" />
                       <path d="M12 16v6" />
                       <path d="M2 12h6" />
@@ -65,114 +139,108 @@
                       <path d="M14.8 14.8L17 17" />
                       <path d="M7 17l2.2-2.2" />
                       <path d="M14.8 9.2L17 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>Séance mix</div>
-                    <div class="mt-1 text-sm font-semibold text-white/85">Mobilité + équilibre</div>
-                  </div>
+                  </svg>
                 </div>
-                <svg viewBox="0 0 24 24" class="h-6 w-6 opacity-90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
+                <div>
+                  <div class="text-lg font-extrabold">Séance mix</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Mobilité + équilibre</div>
+                </div>
               </div>
             </button>
             <button
-              class="w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 px-4 py-4 text-left text-xl font-extrabold text-white shadow-sm shadow-emerald-600/20 transition active:translate-y-px"
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-indigo-600 to-blue-500 p-4 text-center text-white shadow-sm shadow-indigo-600/20 transition active:translate-y-px"
+              type="button"
+              @click="router.push({ path: '/session', query: { program: 'mobilite_assis' } })"
+            >
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 8l6-4 6 4" />
+                      <path d="M6 16l6 4 6-4" />
+                      <path d="M12 4v16" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-lg font-extrabold">Mobilité</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
+                </div>
+              </div>
+            </button>
+            <button
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-emerald-600 to-teal-500 p-4 text-center text-white shadow-sm shadow-emerald-600/20 transition active:translate-y-px"
               type="button"
               @click="router.push({ path: '/session', query: { program: 'circulation_assis' } })"
             >
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M12 2c2.5 2.5 2.5 5.5 0 8" />
                       <path d="M12 22c-2.5-2.5-2.5-5.5 0-8" />
                       <path d="M2 12c2.5-2.5 5.5-2.5 8 0" />
                       <path d="M22 12c-2.5 2.5-5.5 2.5-8 0" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>Circulation</div>
-                    <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
-                  </div>
+                  </svg>
                 </div>
-                <svg viewBox="0 0 24 24" class="h-6 w-6 opacity-90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
+                <div>
+                  <div class="text-lg font-extrabold">Circulation</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
+                </div>
               </div>
             </button>
             <button
-              class="w-full rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-500 px-4 py-4 text-left text-xl font-extrabold text-white shadow-sm shadow-violet-600/20 transition active:translate-y-px"
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-rose-600 to-pink-500 p-4 text-center text-white shadow-sm shadow-rose-600/20 transition active:translate-y-px"
+              type="button"
+              @click="router.push({ path: '/session', query: { program: 'equilibre_assis' } })"
+            >
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2v20" />
+                      <path d="M6 10h12" />
+                      <path d="M8 22l4-4 4 4" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-lg font-extrabold">Équilibre</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
+                </div>
+              </div>
+            </button>
+            <button
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-violet-600 to-fuchsia-500 p-4 text-center text-white shadow-sm shadow-violet-600/20 transition active:translate-y-px"
               type="button"
               @click="router.push({ path: '/session', query: { program: 'renfo_doux_assis' } })"
             >
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M7 12h10" />
                       <path d="M9 7h6" />
                       <path d="M9 17h6" />
                       <path d="M4 12a2 2 0 0 1 2-2h1v4H6a2 2 0 0 1-2-2Z" />
                       <path d="M20 12a2 2 0 0 1-2 2h-1v-4h1a2 2 0 0 1 2 2Z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>Renforcement doux</div>
-                    <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
-                  </div>
+                  </svg>
                 </div>
-                <svg viewBox="0 0 24 24" class="h-6 w-6 opacity-90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
+                <div>
+                  <div class="text-lg font-extrabold">Renfo doux</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
+                </div>
               </div>
             </button>
             <button
-              class="w-full rounded-2xl bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-4 text-left text-xl font-extrabold text-white shadow-sm shadow-sky-600/20 transition active:translate-y-px"
+              class="aspect-[1/1] w-full rounded-3xl bg-gradient-to-r from-rose-600 to-red-600 p-4 text-center text-white shadow-sm shadow-rose-600/20 transition active:translate-y-px"
               type="button"
-              @click="router.push({ path: '/session', query: { program: 'respiration' } })"
+              @click="router.push('/surprise')"
             >
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 8c3-2 6-2 9 0" />
-                      <path d="M3 12c4-2 8-2 12 0" />
-                      <path d="M3 16c3-2 6-2 9 0" />
-                      <path d="M17 10c1.8 0 3 1.2 3 3s-1.2 3-3 3" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>Respiration</div>
-                    <div class="mt-1 text-sm font-semibold text-white/85">Douce</div>
-                  </div>
-                </div>
-                <svg viewBox="0 0 24 24" class="h-6 w-6 opacity-90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </div>
-            </button>
-            <button
-              class="w-full rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-4 text-left text-xl font-extrabold text-white shadow-sm shadow-amber-600/20 transition active:translate-y-px"
-              type="button"
-              @click="router.push({ path: '/session', query: { program: 'relaxation_assis' } })"
-            >
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
-                    <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <div class="flex h-full flex-col items-center justify-center gap-3">
+                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M12 21s-6-4.35-6-10a3.5 3.5 0 0 1 6-2 3.5 3.5 0 0 1 6 2c0 5.65-6 10-6 10Z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div>Relaxation</div>
-                    <div class="mt-1 text-sm font-semibold text-white/85">Assis</div>
-                  </div>
+                  </svg>
                 </div>
-                <svg viewBox="0 0 24 24" class="h-6 w-6 opacity-90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
+                <div>
+                  <div class="text-lg font-extrabold">Surprise</div>
+                  <div class="mt-1 text-sm font-semibold text-white/85">Session</div>
+                </div>
               </div>
             </button>
           </div>

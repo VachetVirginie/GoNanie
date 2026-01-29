@@ -186,6 +186,7 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { loadProfile } from '../domain/profile'
 import { getSessionByProgram } from '../domain/session'
+import type { ProgramId } from '../domain/session'
 import { cardClass, primaryButtonClass, secondaryButtonClass } from '../ui/components'
 
 const router = useRouter()
@@ -200,9 +201,26 @@ const idx = ref(0)
 const running = ref(false)
 const remaining = ref(0)
 
+const PROGRAM_IDS = [
+  'mix',
+  'circulation_assis',
+  'renfo_doux_assis',
+  'relaxation_assis',
+  'respiration',
+  'mobilite_assis',
+  'equilibre_assis',
+  'matin_douceur',
+  'soir_detente',
+] as const
+
+function isProgramId(value: string): value is ProgramId {
+  return (PROGRAM_IDS as readonly string[]).includes(value)
+}
+
 const programId = computed(() => {
   const q = route.query.program
-  return typeof q === 'string' ? q : null
+  if (typeof q !== 'string') return null
+  return isProgramId(q) ? q : null
 })
 
 const exercises = computed(() => getSessionByProgram(programId.value))
@@ -213,6 +231,14 @@ const total = computed(() => exercises.value.length)
 
 const programLabel = computed(() => {
   switch (programId.value) {
+    case 'mobilite_assis':
+      return 'Mobilité (assis)'
+    case 'equilibre_assis':
+      return 'Équilibre (assis)'
+    case 'matin_douceur':
+      return 'Matin douceur'
+    case 'soir_detente':
+      return 'Soir détente'
     case 'respiration':
       return 'Respiration'
     case 'circulation_assis':
@@ -229,6 +255,66 @@ const programLabel = computed(() => {
 
 const theme = computed(() => {
   switch (programId.value) {
+    case 'mobilite_assis':
+      return {
+        heroTo: '',
+        chip: 'bg-indigo-50 text-indigo-900',
+        progress: 'from-indigo-600 to-blue-500',
+        blob: 'bg-blue-400',
+        consigneCard: 'border-indigo-200 bg-indigo-50/40',
+        consignePill: 'bg-indigo-600 text-white',
+        consigneInner: 'border-indigo-100',
+        consigneLeft: 'border-indigo-600',
+        modePill: 'bg-indigo-50 text-indigo-900',
+        timerCard: 'border-indigo-200',
+        timerPill: 'bg-indigo-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-indigo-600 to-blue-500 shadow-indigo-600/20',
+      }
+    case 'equilibre_assis':
+      return {
+        heroTo: '',
+        chip: 'bg-rose-50 text-rose-900',
+        progress: 'from-rose-600 to-pink-500',
+        blob: 'bg-pink-400',
+        consigneCard: 'border-rose-200 bg-rose-50/40',
+        consignePill: 'bg-rose-600 text-white',
+        consigneInner: 'border-rose-100',
+        consigneLeft: 'border-rose-600',
+        modePill: 'bg-rose-50 text-rose-900',
+        timerCard: 'border-rose-200',
+        timerPill: 'bg-rose-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-rose-600 to-pink-500 shadow-rose-600/20',
+      }
+    case 'matin_douceur':
+      return {
+        heroTo: '',
+        chip: 'bg-yellow-50 text-yellow-900',
+        progress: 'from-yellow-500 to-amber-500',
+        blob: 'bg-amber-400',
+        consigneCard: 'border-yellow-200 bg-yellow-50/40',
+        consignePill: 'bg-amber-600 text-white',
+        consigneInner: 'border-yellow-100',
+        consigneLeft: 'border-amber-600',
+        modePill: 'bg-yellow-50 text-yellow-900',
+        timerCard: 'border-yellow-200',
+        timerPill: 'bg-amber-600 text-white',
+        primaryButton: 'bg-gradient-to-r from-yellow-500 to-amber-500 shadow-amber-600/20',
+      }
+    case 'soir_detente':
+      return {
+        heroTo: '',
+        chip: 'bg-slate-100 text-slate-900',
+        progress: 'from-slate-700 to-indigo-700',
+        blob: 'bg-indigo-400',
+        consigneCard: 'border-slate-200 bg-slate-50/60',
+        consignePill: 'bg-slate-800 text-white',
+        consigneInner: 'border-slate-100',
+        consigneLeft: 'border-slate-800',
+        modePill: 'bg-slate-100 text-slate-900',
+        timerCard: 'border-slate-200',
+        timerPill: 'bg-slate-800 text-white',
+        primaryButton: 'bg-gradient-to-r from-slate-700 to-indigo-700 shadow-slate-700/20',
+      }
     case 'respiration':
       return {
         heroTo: '',

@@ -7,9 +7,20 @@ export type Exercise = {
   variantStanding: string
 }
 
-export type ProgramId = 'mix' | 'circulation_assis' | 'renfo_doux_assis' | 'relaxation_assis' | 'respiration'
+export type ProgramId =
+  | 'mix'
+  | 'circulation_assis'
+  | 'renfo_doux_assis'
+  | 'relaxation_assis'
+  | 'respiration'
+  | 'mobilite_assis'
+  | 'equilibre_assis'
+  | 'matin_douceur'
+  | 'soir_detente'
 
-export function getSessionByProgram(program: string | null | undefined): Exercise[] {
+export function getSessionByProgram(
+  program?: ProgramId | null
+): Exercise[] {
   switch (program) {
     case 'respiration':
       return SESSION_RESPIRATION
@@ -19,6 +30,14 @@ export function getSessionByProgram(program: string | null | undefined): Exercis
       return SESSION_RENFO_DOUX_ASSIS
     case 'relaxation_assis':
       return SESSION_RELAXATION_ASSIS
+    case 'mobilite_assis':
+      return SESSION_MOBILITE_ASSIS
+    case 'equilibre_assis':
+      return SESSION_EQUILIBRE_ASSIS
+    case 'matin_douceur':
+      return SESSION_MATIN_DOUCEUR
+    case 'soir_detente':
+      return SESSION_SOIR_DETENTE
     case 'mix':
     default:
       return DEFAULT_SESSION_MIX
@@ -167,6 +186,115 @@ export const DEFAULT_SESSION_MIX: Exercise[] = [
     variantStanding: ""
   },
 ]
+
+export const SESSION_MOBILITE_ASSIS: Exercise[] = [
+  {
+    id: 'neck-mobility',
+    title: 'Mobilité du cou',
+    durationSec: 60,
+    instructions: 'Mouvements lents, sans jamais forcer.',
+    variantSeated: 'Tournez doucement la tête de droite à gauche, puis inclinez légèrement sur les côtés.',
+    variantStanding: ""
+  },
+  {
+    id: 'shoulder-roll',
+    title: 'Mobilité des épaules',
+    durationSec: 60,
+    instructions: 'Respirez calmement pendant le mouvement.',
+    variantSeated: 'Faites des cercles lents avec les épaules, vers l’arrière puis vers l’avant.',
+    variantStanding: ""
+  },
+  {
+    id: 'ankle-mobility',
+    title: 'Mobilité des chevilles',
+    durationSec: 90,
+    instructions: 'Amplitude confortable.',
+    variantSeated: 'Une jambe à la fois, dessinez des cercles avec le pied. Changez de côté.',
+    variantStanding: ""
+  },
+]
+
+export const SESSION_EQUILIBRE_ASSIS: Exercise[] = [
+  {
+    id: 'weight-shift',
+    title: 'Transfert de poids',
+    durationSec: 60,
+    instructions: 'Mouvement lent et contrôlé.',
+    variantSeated: 'Assis bien droit, transférez doucement le poids du corps à droite puis à gauche.',
+    variantStanding: ""
+  },
+  {
+    id: 'single-leg-support',
+    title: 'Stabilité de la jambe',
+    durationSec: 90,
+    instructions: 'Stoppez si vous perdez l’équilibre.',
+    variantSeated: 'Soulevez légèrement un pied du sol, maintenez quelques secondes, puis changez.',
+    variantStanding: ""
+  },
+  {
+    id: 'posture',
+    title: 'Posture assise',
+    durationSec: 60,
+    instructions: 'Respiration naturelle.',
+    variantSeated: 'Grandissez-vous comme si un fil tirait le sommet de la tête vers le haut.',
+    variantStanding: ""
+  },
+]
+
+export const SESSION_MATIN_DOUCEUR: Exercise[] = [
+  {
+    id: 'wake-breath',
+    title: 'Respiration douce',
+    durationSec: 60,
+    instructions: 'Respiration calme et régulière.',
+    variantSeated: 'Assis au bord de la chaise, pieds bien à plat, mains sur les cuisses.',
+    variantStanding: ""
+  },
+  {
+    id: 'arms-wake',
+    title: 'Réveil des bras',
+    durationSec: 60,
+    instructions: 'Ne montez pas au-dessus des épaules.',
+    variantSeated: 'Levez doucement les bras devant vous puis reposez.',
+    variantStanding: ""
+  },
+  {
+    id: 'feet-wake',
+    title: 'Réveil des pieds',
+    durationSec: 60,
+    instructions: 'Mouvement fluide.',
+    variantSeated: 'Montez et baissez les pointes et les talons, tranquillement.',
+    variantStanding: ""
+  },
+]
+
+export const SESSION_SOIR_DETENTE: Exercise[] = [
+  {
+    id: 'slow-breathing',
+    title: 'Respiration lente',
+    durationSec: 90,
+    instructions: 'Allongez doucement l’expiration.',
+    variantSeated: 'Assis confortablement, épaules relâchées.',
+    variantStanding: ""
+  },
+  {
+    id: 'shoulder-release',
+    title: 'Relâchement des épaules',
+    durationSec: 60,
+    instructions: 'Sans forcer.',
+    variantSeated: 'Montez les épaules puis laissez-les tomber doucement.',
+    variantStanding: ""
+  },
+  {
+    id: 'body-relax',
+    title: 'Détente globale',
+    durationSec: 60,
+    instructions: 'Prenez conscience des zones détendues.',
+    variantSeated: 'Relâchez volontairement la mâchoire, les mains et le dos.',
+    variantStanding: ""
+  },
+]
+
 
 
 
